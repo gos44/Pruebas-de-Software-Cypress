@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Functionality Center</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    margin-bottom: 0.5em;
+}
+
+.container {
+    display: flex;
+    margin: 20px;
+}
+
+.sidebar {
+    width: 25%;
+    background-color: #444;
+    color: white;
+    padding: 1em;
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar ul li a {
+    color: #ddd;
+    text-decoration: none;
+    display: block;
+    padding: 0.5em;
+    border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #666;
+}
+
+.main-content {
+    width: 75%;
+    padding: 1em;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.test-section {
+    margin-bottom: 2em;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#addToCartBtn {
+    margin-top: 10px;
+}
+
+#interactionResult, #navigationResult, #searchResult {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+.test-navigation {
+    margin-top: 10px;
+}
+
+.test-navigation a {
+    color: #333;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.test-navigation a:hover {
+    text-decoration: underline;
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 80%;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 1em;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+#logs {
+    margin-top: 1em;
+    background-color: #444;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+#logEntries {
+    list-style-type: none;
+}
+
+#logEntries li {
+    padding: 5px;
+    color: #ddd;
+}
+
+</style>
+
+</head>
+<body>
+    <header>
+        <h1>Test Functionality Center</h1>
+        <p>Perform tests on buttons, links, navigation, and search.</p>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Test Categories</h2>
+            <ul>
+                <li><a href="#interaction">User Interaction</a></li>
+                <li><a href="#navigation">Navigation</a></li>
+                <li><a href="#search">Search</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <!-- User Interaction Section -->
+            <section id="interaction" class="test-section">
+                <h3>User Interaction</h3>
+                <button id="addToCartBtn">Add to Cart</button>
+                <p id="interactionResult">Result will appear here.</p>
+            </section>
+
+            <!-- Navigation Section -->
+            <section id="navigation" class="test-section">
+                <h3>Navigation</h3>
+                <nav class="test-navigation">
+                    <a href="#">Home</a> > 
+                    <a href="#">Products</a> > 
+                    <a href="#">SQUARE</a>
+                </nav>
+                <p id="navigationResult">Navigation result will appear here.</p>
+            </section>
+
+            <!-- Search Section -->
+            <section id="search" class="test-section">
+                <h3>Search</h3>
+                <input type="text" id="searchBar" placeholder="Search term (e.g., 'SQUARE')">
+                <button id="searchBtn">Search</button>
+                <ul id="searchResults"></ul>
+                <p id="searchResult">Search result will appear here.</p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <button id="resetBtn">Reset Tests</button>
+        <div id="logs">
+            <h3>Test Logs</h3>
+            <ul id="logEntries"></ul>
+        </div>
+    </footer>
+
+    <script >
+        document.getElementById('addToCartBtn').addEventListener('click', () => {
+        document.getElementById('interactionResult').textContent = "Product added to cart successfully.";
+        addLog("Add to Cart button clicked - Product added.");
+    });
+    
+    document.getElementById('searchBtn').addEventListener('click', () => {
+        const searchTerm = document.getElementById('searchBar').value;
+        document.getElementById('searchResult').textContent = `Search results for "${searchTerm}" displayed.`;
+        addLog(`Search button clicked - Results for "${searchTerm}" displayed.`);
+    });
+    
+    document.getElementById('resetBtn').addEventListener('click', () => {
+        document.getElementById('interactionResult').textContent = "Result will appear here.";
+        document.getElementById('navigationResult').textContent = "Navigation result will appear here.";
+        document.getElementById('searchResult').textContent = "Search result will appear here.";
+        document.getElementById('logEntries').innerHTML = '';
+        addLog("Tests reset.");
+    });
+    
+    function addLog(message) {
+        const logEntry = document.createElement('li');
+        logEntry.textContent = message;
+        document.getElementById('logEntries').appendChild(logEntry);
+    }  
+</script>
+</body>
+</html>
